@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1" client="site" method="upgrade">
+	<name>mod_qltags</name>
+	<author>Mareike Riegel</author>
+	<creationDate>2020</creationDate>
+	<copyright>Copyright (C) 2020 Mareike Riegel. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>mareike.riegel@ql.de</authorEmail>
+	<authorUrl>ql.de</authorUrl>
+	<version>1.0.0</version>
+	<description>MOD_QLTAGS_XML_DESCRIPTION</description>
+	<files>
+		<filename module="mod_qltags">mod_qltags.php</filename>
+		<folder>css</folder>
+		<folder>language</folder>
+		<folder>php</folder>
+		<folder>tmpl</folder>
+		<filename>helper.php</filename>
+	</files>
+	<media folder="media" destination="mod_qltags">
+		<folder>css</folder>
+	</media>
+	<languages>
+		<language tag="en-GB">en-GB.mod_qltags.ini</language>
+		<language tag="en-GB">en-GB.mod_qltags.sys.ini</language>
+	</languages>
+	<help key="JHELP_EXTENSIONS_MODULE_MANAGER_QLTAGS" />
+	<config name="basic" addfieldpath="modules/mod_qltags/php/fields">
+		<fields name="params">
+			<fieldset name="basic">
+				<field
+					name="parentTag"
+					type="tag"
+					label="MOD_QLTAGS_PARENT_TAG_LABEL"
+					description="MOD_QLTAGS_PARENT_TAG_DESC"
+					multiple="true"
+					filter="int_array"
+					mode="nested"
+				/>
+
+				<field
+					name="maximum"
+					type="integer"
+					label="MOD_QLTAGS_MAX_LABEL"
+					description="MOD_QLTAGS_MAX_DESC"
+					default="5"
+					filter="integer"
+					first="1"
+					last="20"
+					step="1"
+				/>
+
+				<field
+					name="timeframe"
+					type="list"
+					label="MOD_QLTAGS_TIMEFRAME_LABEL"
+					description="MOD_QLTAGS_TIMEFRAME_DESC"
+					default="alltime"
+					validate="options"
+					>
+					<option value="alltime">MOD_QLTAGS_ALL_TIME</option>
+					<option value="hour">MOD_QLTAGS_LAST_HOUR</option>
+					<option value="day">MOD_QLTAGS_LAST_DAY</option>
+					<option value="week">MOD_QLTAGS_LAST_WEEK</option>
+					<option value="month">MOD_QLTAGS_LAST_MONTH</option>
+					<option value="year">MOD_QLTAGS_LAST_YEAR</option>
+				</field>
+
+				<field
+					name="order_value"
+					type="list"
+					label="MOD_QLTAGS_ORDER_VALUE_LABEL"
+					description="MOD_QLTAGS_ORDER_VALUE_DESC"
+					default="count"
+					validate="options"
+					>
+					<option value="id">MOD_QLTAGS_ORDER_VALUE_ID</option>
+					<option value="t.lft">MOD_QLTAGS_ORDER_VALUE_ORDERING</option>
+					<option value="title">MOD_QLTAGS_ORDER_VALUE_TITLE</option>
+					<option value="count">MOD_QLTAGS_ORDER_VALUE_COUNT</option>
+					<option value="rand">MOD_QLTAGS_ORDER_VALUE_RANDOM</option>
+				</field>
+
+				<field
+					name="order_direction"
+					type="list"
+					label="JGLOBAL_ORDER_DIRECTION_LABEL"
+					description="JGLOBAL_ORDER_DIRECTION_DESC"
+					default="1"
+					filter="integer"
+					>
+					<option value="0">JGLOBAL_ORDER_ASCENDING</option>
+					<option value="1">JGLOBAL_ORDER_DESCENDING</option>
+				</field>
+
+				<field
+					name="countInTitle"
+					type="radio"
+					label="MOD_QLTAGS_COUNTINTITLE_LABEL"
+					description="MOD_QLTAGS_COUNTINTITLE_DESC"
+					class="btn-group btn-group-yesno"
+					default="0"
+					filter="integer"
+					>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+
+				<field
+					name="no_results_text"
+					type="radio"
+					label="MOD_QLTAGS_NO_RESULTS_LABEL"
+					description="MOD_QLTAGS_NO_RESULTS_DESC"
+					class="btn-group btn-group-yesno"
+					default="0"
+					filter="integer"
+					>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+
+				<field
+					name="displayLabels"
+					type="radio"
+					label="MOD_QLTAGS_DISPLAYLABELS_LABEL"
+					description="MOD_QLTAGS_DISPLAYLABELS_DESC"
+					class="btn-group btn-group-yesno"
+					default="0"
+					filter="integer"
+					>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+
+				<field
+					name="itemClass"
+					type="text"
+					label="MOD_QLTAGS_ITEMCLASS_LABEL"
+					description="MOD_QLTAGS_ITEMCLASS_DESC"
+					default="">
+				</field>
+			</fieldset>
+			<fieldset name="qltagsfields">
+				<field name="tag_position1" type="qltag" default="0" label="MOD_QLTAGS_POSITION1_LABEL" description="MOD_QLTAGS_POSITION1_DESC"> </field>
+				<field name="tag_position2" type="qltag" default="0" label="MOD_QLTAGS_POSITION2_LABEL" description="MOD_QLTAGS_POSITION2_DESC"> </field>
+				<field name="tag_position3" type="qltag" default="0" label="MOD_QLTAGS_POSITION3_LABEL" description="MOD_QLTAGS_POSITION3_DESC"> </field>
+				<field name="tag_position4" type="qltag" default="0" label="MOD_QLTAGS_POSITION4_LABEL" description="MOD_QLTAGS_POSITION4_DESC"> </field>
+				<field name="tag_position5" type="qltag" default="0" label="MOD_QLTAGS_POSITION5_LABEL" description="MOD_QLTAGS_POSITION5_DESC"> </field>
+				<field name="tag_position6" type="qltag" default="0" label="MOD_QLTAGS_POSITION6_LABEL" description="MOD_QLTAGS_POSITION6_DESC"> </field>
+				<field name="tag_position7" type="qltag" default="0" label="MOD_QLTAGS_POSITION7_LABEL" description="MOD_QLTAGS_POSITION7_DESC"> </field>
+				<field name="tag_position8" type="qltag" default="0" label="MOD_QLTAGS_POSITION8_LABEL" description="MOD_QLTAGS_POSITION8_DESC"> </field>
+				<field name="tag_position9" type="qltag" default="0" label="MOD_QLTAGS_POSITION9_LABEL" description="MOD_QLTAGS_POSITION9_DESC"> </field>
+				<field name="tag_position10" type="qltag" default="0" label="MOD_QLTAGS_POSITION10_LABEL" description="MOD_QLTAGS_POSITION10_DESC"> </field>
+				<field name="tag_position11" type="qltag" default="0" label="MOD_QLTAGS_POSITION11_LABEL" description="MOD_QLTAGS_POSITION11_DESC"> </field>
+			</fieldset>
+			<fieldset
+				name="cloud"
+				label="MOD_QLTAGS_FIELDSET_CLOUD_LABEL"
+			>
+				<field
+					name="minsize"
+					type="number"
+					label="MOD_QLTAGS_MINSIZE_LABEL"
+					description="MOD_QLTAGS_MINSIZE_DESC"
+					default="1"
+					filter="float"
+				/>
+
+				<field
+					name="maxsize"
+					type="number"
+					label="MOD_QLTAGS_MAXSIZE_LABEL"
+					description="MOD_QLTAGS_MAXSIZE_DESC"
+					default="2"
+					filter="float"
+				/>
+			</fieldset>
+
+			<fieldset
+					name="advanced">
+
+				<field
+						name="layout"
+						type="modulelayout"
+						label="JFIELD_ALT_LAYOUT_LABEL"
+						description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+
+				<field
+						name="moduleclass_sfx"
+						type="text"
+						label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+						description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+
+				<field
+						name="cache"
+						type="list"
+						default="1"
+						label="COM_MODULES_FIELD_CACHING_LABEL"
+						description="COM_MODULES_FIELD_CACHING_DESC">
+					<option
+							value="1">JGLOBAL_USE_GLOBAL</option>
+					<option
+							value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+
+				<field
+						name="cache_time"
+						type="text"
+						default="900"
+						label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+						description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
+				<field
+						name="cachemode"
+						type="hidden"
+						default="static">
+					<option
+							value="static"></option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>
